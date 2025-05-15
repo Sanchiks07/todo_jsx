@@ -17,6 +17,8 @@ function App() {
     {todos.map((todo) => {
       return <ToDo key={todo.id} {...todo} />;
     })}
+    
+    <DiariesList/>
     </>
   )
 }

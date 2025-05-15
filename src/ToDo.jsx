@@ -12,6 +12,7 @@ function ToDo({ task, completed }) {
         onChange={() => setCheck(!check)}
       />
       {task}
+      <br/>
     </label>
   );
 }
