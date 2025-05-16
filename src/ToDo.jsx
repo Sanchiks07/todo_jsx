@@ -1,19 +1,18 @@
-import { useState } from "react";
 import "./ToDo.css"
 
-function ToDo({ task, completed }) {
-  const [check, setCheck] = useState(completed);
-  
+function ToDo({ task, completed, id, onDelete, onToggle }) {
   return (
-    <label>
+    <article>
       <input
         type="checkbox"
-        checked={check}
-        onChange={() => setCheck(!check)}
+        checked={completed}
+        onChange={() => onToggle(id)}
       />
       {task}
       <br/>
-    </label>
+
+      <button onClick={() => onDelete(id)}>❌</button>
+    </article>
   );
 }
 
