@@ -1,5 +1,3 @@
-import "./Diary.css"
-
 function Diary({ title, body, date }) {
     return (
         <>

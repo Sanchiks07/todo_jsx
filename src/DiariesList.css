@@ -1,0 +1,22 @@
+.diary-header {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.new-form {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.lists-edit {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}

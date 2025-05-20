@@ -1,19 +1,24 @@
 import "./ToDo.css"
 
-function ToDo({ task, completed, id, onDelete, onToggle }) {
+function ToDo({ task, completed, id, onDelete, onToggle, onEdit }) {
   return (
     <article>
-      <input
-        type="checkbox"
-        checked={completed}
-        onChange={() => onToggle(id)}
-      />
-      {task}
+      <div className="task">
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={() => onToggle(id)}
+        />
+        {task}
+      </div>
+      
+      <div className="buttons">
+        <button onClick={() => onDelete(id)}>❌</button>
+        <button onClick={() => onEdit(id, task)}>📝</button>
+      </div>
       <br/>
-
-      <button onClick={() => onDelete(id)}>❌</button>
     </article>
   );
 }
 
-export default ToDo
+export default ToDo;

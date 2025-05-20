@@ -11,19 +11,38 @@ function App() {
   ]);
 
   const [newTask, setNewTask] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editedTask, setEditedTask] = useState("");
 
   function handleAdd(event) {
     event.preventDefault();
 
-    const newTodo = {
-      id: crypto.randomUUID(),  //ļauj ģenerēt nejaušu ID
-      task: newTask,
-      completed: false,
-    };
-    
-    setTodos([...todos, newTodo]);
-    setNewTask("");
+    if (editingId) {
+      setTodos(todos.map(todo => 
+        todo.id === editingId ? { ...todo, task: editedTask } : todo
+      ));
+      setEditingId(null);
+      setEditedTask("");
+    } else {
+      const newTodo = {
+        id: crypto.randomUUID(),
+        task: newTask,
+        completed: false,
+      };
+      setTodos([...todos, newTodo]);
+      setNewTask("");
+    }
   };
+
+  function handleEdit(id, task) {
+    setEditingId(id);
+    setEditedTask(task);
+  }
+
+  function handleCancelEdit() {
+    setEditingId(null);
+    setEditedTask("");
+  }
 
   function handleDelete(id) {
     setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
@@ -39,23 +58,54 @@ function App() {
 
   return (
     <>
-    <form onSubmit={handleAdd}>
-      <label>
-        Jauns uzdevums:
-        <input
-          value={newTask}
-          onChange={(event) => setNewTask(event.target.value)}
-        />
-      </label>
-      <button type="submit">Pievienot</button>
-    </form>
+    <div className="container">
+      <div className="todo">
+        <h1>Veicamie uzdevumi</h1>
 
-    <h1>Veicamie uzdevumi</h1>
-    {todos.map((todo) => {
-      return <ToDo key={todo.id} {...todo} onDelete={handleDelete} onToggle={handleToggle} />;
-    })}
+        <form onSubmit={handleAdd}>
+          <label>
+            Jauns uzdevums<br/>
+            <input
+              value={newTask}
+              onChange={(event) => setNewTask(event.target.value)}
+              disabled={editingId !== null}
+            />
+          </label>
+          <br/><br/>
+          <button type="submit" disabled={editingId !== null}>Pievienot</button>
+        </form>
+        <br/>
 
-    <DiariesList/>
+        {todos.map((todo) => {
+          if (todo.id === editingId) {
+            return (
+              <div key={todo.id}>
+                <input
+                  type="text"
+                  value={editedTask}
+                  onChange={(e) => setEditedTask(e.target.value)}
+                />
+                <button onClick={handleAdd}>✔</button>
+                <button onClick={handleCancelEdit}>❌</button>
+              </div>
+            )
+          }
+          return (
+            <ToDo 
+              key={todo.id} 
+              {...todo} 
+              onDelete={handleDelete} 
+              onToggle={handleToggle} 
+              onEdit={handleEdit} 
+            />
+          );
+        })}
+      </div>
+
+      <div className="diary">
+        <DiariesList/>
+      </div>
+    </div>
     </>
   )
 }
