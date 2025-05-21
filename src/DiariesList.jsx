@@ -53,51 +53,47 @@ function DiariesList() {
 
     return (
         <>
-            <div className="diary">
-                <div className="diary-header">
-                    <h1>Dienasgrāmatas ieraksti</h1>
-                    <h3>Jauns Ieraksts</h3>
-                    <form onSubmit={handleAddNewDiary} className="new-form">
-                        <label>
-                            Title
-                            <br/>
-                            <input
-                                type="text"
-                                value={newDiary.title}
-                                onChange={e => handleNewDiaryChange("title", e.target.value)}
-                                required
-                            />
-                        </label>
-                        <br/>
-                        <label>
-                            Body
-                            <br/>
-                            <textarea
-                                value={newDiary.body}
-                                onChange={e => handleNewDiaryChange("body", e.target.value)}
-                                rows={3}
-                                required
-                            />
-                        </label>
-                        <br/>
-                        <label>
-                            Date
-                            <br/>
-                            <input
-                                type="date"
-                                value={newDiary.date}
-                                onChange={e => handleNewDiaryChange("date", e.target.value)}
-                                required
-                            />
-                        </label>
-                        <br/><br/>
-                        <button type="submit">Pievienot</button>
-                    </form>
-                </div>
-            </div>
+            <h1>Dienasgrāmatas ieraksti</h1>
+            <h3>Jauns Ieraksts</h3>
+            <form onSubmit={handleAddNewDiary}>
+                <label>
+                    Title
+                    <br/>
+                    <input
+                        type="text"
+                        value={newDiary.title}
+                        onChange={e => handleNewDiaryChange("title", e.target.value)}
+                        required
+                    />
+                </label>
+                <br/>
+                <label>
+                    Body
+                    <br/>
+                    <textarea
+                        value={newDiary.body}
+                        onChange={e => handleNewDiaryChange("body", e.target.value)}
+                        rows={3}
+                        required
+                    />
+                </label>
+                <br/>
+                <label>
+                    Date
+                    <br/>
+                    <input
+                        type="date"
+                        value={newDiary.date}
+                        onChange={e => handleNewDiaryChange("date", e.target.value)}
+                        required
+                    />
+                </label>
+                <br/><br/>
+                <button type="submit">Pievienot</button>
+            </form>
 
             {diaries.map(diary => (
-                <div key={diary.id} className="lists-edit">
+                <div key={diary.id}>
                     {editingId === diary.id ? (
                         <>
                             <label>
