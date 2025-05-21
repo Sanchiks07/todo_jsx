@@ -9,10 +9,11 @@ function ToDo({ task, completed, id, onDelete, onToggle, onEdit }) {
           onChange={() => onToggle(id)}
         />
         {task}
+        <br/>
       
         <button onClick={() => onDelete(id)}>❌</button>
         <button onClick={() => onEdit(id, task)}>📝</button>
-      <br/>
+      <br/><br/>
     </article>
   );
 }

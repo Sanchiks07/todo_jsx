@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 function DiariesList() {
     const [diaries, setDiaries] = useState([
-        { id: 1, title: "R1 <3", body: "Bike go vroom vroom", date: "2025-05-15" },
-        { id: 2, title: "Help", body: "I wanna go home.", date: "2025-05-15" },
-        { id: 3, title: "Just dance!", body: "Maziņš odiņš esmu es...", date: "2025-05-15" },
+        { id: 1, title: "R1 <3", body: "Bike go vroom vroom", date: "15-05-2025" },
+        { id: 2, title: "Help", body: "I wanna go home.", date: "15-05-2025" },
+        { id: 3, title: "Just dance!", body: "Maziņš odiņš esmu es...", date: "15-05-2025" },
     ]);
 
     const [newDiary, setNewDiary] = useState({ title: "", body: "", date: "" });
@@ -53,7 +53,7 @@ function DiariesList() {
 
     return (
         <>
-            <h1>Dienasgrāmatas ieraksti</h1>
+            <h1>Dienasgrāmatas Ieraksti</h1>
             <h3>Jauns Ieraksts</h3>
             <form onSubmit={handleAddNewDiary}>
                 <label>
@@ -91,7 +91,9 @@ function DiariesList() {
                 <br/><br/>
                 <button type="submit">Pievienot</button>
             </form>
-
+            <br/>
+            <hr/>   {/* pievieonu līniju starp formu un esošajiem ierakstiem */}
+            <br/>
             {diaries.map(diary => (
                 <div key={diary.id}>
                     {editingId === diary.id ? (
@@ -103,7 +105,6 @@ function DiariesList() {
                                     type="text"
                                     value={editedDiary.title}
                                     onChange={e => handleEditedDiaryChange("title", e.target.value)}
-                                    placeholder="Virsraksts"
                                 />
                             </label>
                             <br/>
@@ -114,7 +115,6 @@ function DiariesList() {
                                     value={editedDiary.body}
                                     onChange={e => handleEditedDiaryChange("body", e.target.value)}
                                     rows={4}
-                                    placeholder="Saturs"
                                 />
                             </label>
                             <br/>
@@ -128,7 +128,7 @@ function DiariesList() {
                                 />
                             </label>
                             <br/><br/>
-                            <button onClick={handleSaveEdit}>✔</button>
+                            <button onClick={handleSaveEdit}>✅</button>
                             <button onClick={handleCancelEdit}>❌</button>
                         </>
                     ) : (

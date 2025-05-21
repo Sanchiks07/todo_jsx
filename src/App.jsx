@@ -60,11 +60,12 @@ function App() {
     <>
     <div className="container">
       <div className="todo">
-        <h1>Veicamie uzdevumi</h1>
+        <h1>Veicamie Uzdevumi</h1>
 
+        <h3>Jauns Uzdevums</h3>
         <form onSubmit={handleAdd}>
           <label>
-            Jauns uzdevums<br/>
+            Uzdevums<br/>
             <input
               value={newTask}
               onChange={(event) => setNewTask(event.target.value)}
@@ -75,7 +76,8 @@ function App() {
           <button type="submit" disabled={editingId !== null}>Pievienot</button>
         </form>
         <br/>
-
+        <hr/> {/* pievieonu līniju starp formu un esošajiem ierakstiem */}
+        <br/>
         {todos.map((todo) => {
           if (todo.id === editingId) {
             return (
@@ -85,7 +87,7 @@ function App() {
                   value={editedTask}
                   onChange={(e) => setEditedTask(e.target.value)}
                 />
-                <button onClick={handleAdd}>✔</button>
+                <button onClick={handleAdd}>✅</button>
                 <button onClick={handleCancelEdit}>❌</button>
               </div>
             )
