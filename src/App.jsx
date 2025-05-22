@@ -18,14 +18,16 @@ function App() {
     event.preventDefault();
 
     if (editingId) {
+      // rediģēšana
       setTodos(todos.map(todo => 
         todo.id === editingId ? { ...todo, task: editedTask } : todo
       ));
       setEditingId(null);
       setEditedTask("");
     } else {
+      // pievienošana
       const newTodo = {
-        id: crypto.randomUUID(),
+        id: crypto.randomUUID(),  // ļauj ģenerēt nejaušu ID
         task: newTask,
         completed: false,
       };
