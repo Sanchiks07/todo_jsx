@@ -98,6 +98,7 @@ function DiariesList() {
             <br/>
             <hr/>   {/* pievieonu līniju starp formu un esošajiem ierakstiem */}
             <br/>
+        
             {diaries.map(diary => (
                 <div key={diary.id}>
                     {editingId === diary.id ? (
