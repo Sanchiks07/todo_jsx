@@ -1,17 +1,21 @@
 import Diary from './Diary.jsx'
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+
+function getLocalDiaries() {
+  const stored = localStorage.getItem("diaries");
+  return stored ? JSON.parse(stored) : [];
+}
 
 function DiariesList() {
-    const [diaries, setDiaries] = useState([
-        { id: 1, title: "R1 <3", body: "Bike go vroom vroom", date: "15-05-2025" },
-        { id: 2, title: "Help", body: "I wanna go home.", date: "15-05-2025" },
-        { id: 3, title: "Just dance!", body: "Maziņš odiņš esmu es...", date: "15-05-2025" },
-    ]);
+    const [diaries, setDiaries] = useState(getLocalDiaries);
 
     const [newDiary, setNewDiary] = useState({ title: "", body: "", date: "" });
-
     const [editingId, setEditingId] = useState(null);
     const [editedDiary, setEditedDiary] = useState({ title: "", body: "", date: "" });
+
+    useEffect(() => {
+        localStorage.setItem("diaries", JSON.stringify(diaries));
+    }, [diaries]);
 
     function handleNewDiaryChange(field, value) {
         setNewDiary(prev => ({ ...prev, [field]: value }));
